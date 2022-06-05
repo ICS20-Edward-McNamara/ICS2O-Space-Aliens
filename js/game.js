@@ -8,6 +8,12 @@
 // Modified on: Jun 2022
 // This is the Phaser3 configuration file
 
+// informs the computer that the file splashScene.js exists 
+import SplashScene from './splashScene.js'
+
+// "variables" for all our game scenes
+const splashScene = new SplashScene()
+
 const config = {
   type: Phaser.AUTO,
   width: 1920,
@@ -22,10 +28,16 @@ const config = {
   backgroundColor: 0x5f6e7a,
   scale: {
     mode: Phaser.Scale.FIT,
-    // we place it in the middle of the page.
+    //places backround in the middle of the page.
     autoCenter: Phaser.Scale.CENTER_BOTH
   }
 }
 
 const game = new Phaser.Game(config)
-console.log(game)
+
+// This line loads all of the scenes
+// NOTE: remember any "key" is global and CAN NOT be reused!
+game.scene.add('splashScene', splashScene)
+
+// this line makes the start title our splash scene 
+game.scene.start('splashScene')
