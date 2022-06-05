@@ -13,7 +13,7 @@ class SplashScene extends Phaser.Scene {
 
     this.splashSceneBackgroundImage = null
   }
-// Initializes our splash scene class and sets our backround color
+// Initializes our splash scene  and sets our backround color
   init (data) { this.cameras.main.setBackgroundColor('#ffffff')
   }
 // Prints to the console whatever scene were on (for debuging purposes)
@@ -21,13 +21,13 @@ class SplashScene extends Phaser.Scene {
     console.log('Splash Scene')
      this.load.image('splashSceneBackground', './assets/Immaculate.jpg')
   }
-
+// places the splash scene in the middle of the screen
   create (data) {
     this.splashSceneBackgroundImage = this.add.sprite(0, 0, 'splashSceneBackground')
     this.splashSceneBackgroundImage.x = 1920 / 2
     this.splashSceneBackgroundImage.y = 1080 / 2
   }
-
+// use an if statment to detemine the length of the splash scene 
   update (time, delta) {
     if (time > 5000) {
      this.scene.switch('titleScene')
