@@ -6,27 +6,26 @@
 // Created on: Sep 2020
 // This is the Splash Scene
 
-// extends our splash scene using Phaser (code that someone else has already written)
-class SplashScene extends Phaser.Scene {
+// extends our title scene using Phaser (code that someone else has already written)
+class TitleScene extends Phaser.Scene {
   constructor () {
-    super({ key: 'splashScene' })
+    super({ key: 'titleScene' })
 
     this.splashSceneBackgroundImage = null
   }
-// Initializes our splash scene class and sets our backround color
+// Initializes our title scene class and sets the backround color
   init (data) { this.cameras.main.setBackgroundColor('#ffffff')
   }
 // Prints to the console whatever scene were on (for debuging purposes)
   preload () {
-    console.log('Splash Scene')
+    console.log('Title Scene')
   }
 
   create (data) {
   }
 
   update (time, delta) {
-    this.scene.switch('titleScene')
+    }
   }
-}
 
-export default SplashScene
+export default TitleScene
