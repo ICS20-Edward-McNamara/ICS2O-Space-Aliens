@@ -11,10 +11,12 @@
 // informs the computer that the file splashScene.js exists 
 import SplashScene from './splashScene.js'
 import TitleScene from './titleScene.js'
+import MenuScene from './menuScene.js'
 
 // "variables" for all our game scenes
 const splashScene = new SplashScene()
 const titleScene = new TitleScene()
+const menuScene = new MenuScene()
 
 // configures our gam scene
 const config = {
@@ -42,6 +44,7 @@ const game = new Phaser.Game(config)
 // NOTE: remember any "key" is global and CAN NOT be reused!
 game.scene.add('splashScene', splashScene)
 game.scene.add('titleScene', titleScene)
+game.scene.add('menuScene', menuScene)
 
 // this line makes the start title our splash scene 
 game.scene.start('splashScene')

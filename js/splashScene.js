@@ -3,7 +3,9 @@
 // Copyright (c) 2020 Mr. Coxall All rights reserved
 //
 // Created by: Mr. Coxall
+// Modified by: Edward McNamara
 // Created on: Sep 2020
+// Modified on: Jun 2022
 // This is the Splash Scene
 
 // extends our splash scene using Phaser (code that someone else has already written)
@@ -29,7 +31,7 @@ class SplashScene extends Phaser.Scene {
   }
 // use an if statment to detemine the length of the splash scene 
   update (time, delta) {
-    if (time > 5000) {
+    if (time > 3000) {
      this.scene.switch('titleScene')
     }
   }
