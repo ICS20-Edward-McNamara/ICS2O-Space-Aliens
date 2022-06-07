@@ -32,11 +32,26 @@ class GameScene extends Phaser.Scene {
   create (data) {
     this.background = this.add.image(0, 0, 'jungleBackground').setScale(3.00)
     this.background.setOrigin(0, 0)
-    this.monkey = this.physics.add.sprite(1920 / 2, 1080 - 100, 'monkey').setScale(0.50)
+    this.monkey = this.physics.add.sprite(1920 / 2, 1080 - 100, 'monkey').setScale(0.25)
   }
 
   update (time, delta) {
+    const keyLeftObj = this.input.keyboard.addKey('LEFT')
+    const keyRightObj = this.input.keyboard.addKey('RIGHT')
+    
+    if (keyLeftObj.isDown === true) {
+      this.monkey.x -= 15
+      if (this.monkey.x < 0) {
+        this.monkey.x = 1920
+      }
+    }
+    if (keyRightObj.isDown === true) {
+      this.monkey.x += 15
+      if (this.monkey.x > 1920) {
+        this.monkey.x = 0
+      }
     }
   }
-
+}
+  
 export default GameScene
