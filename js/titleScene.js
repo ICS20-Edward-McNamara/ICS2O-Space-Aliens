@@ -12,7 +12,7 @@
 class TitleScene extends Phaser.Scene {
   constructor () {
     super({ key: 'titleScene' })
-    this.splashSceneBackgroundImage = null
+    this.titleSceneBackgroundImage = null
     this.titleSceneText = null
     this.titleSceneTextStyle = { font: '200px Times', fill: '#f5f542', align: 'center' }
   }
@@ -33,7 +33,9 @@ class TitleScene extends Phaser.Scene {
   }
 
   update (time, delta) {
+    if (time > 6000) {
+      this.scene.switch('menuScene')
     }
   }
-
+}
 export default TitleScene
