@@ -17,7 +17,8 @@ class MenuScene extends Phaser.Scene {
     this.startButton = null
   }
 // Initializes our title scene class and sets the backround color
-  init (data) { this.cameras.main.setBackgroundColor('#ffffff')
+  init (data) { 
+    this.cameras.main.setBackgroundColor('#ffffff')
   }
 // Prints to the console whatever scene were on (for debuging purposes)
   preload () {

@@ -13,7 +13,8 @@ class GameScene extends Phaser.Scene {
   constructor () {
     super({ key: 'gameScene' })
 
-    this.splashSceneBackgroundImage = null
+    this.background = null
+    this.monkey = null
   }
 // Initializes our title scene class and sets the backround color
   init (data) { this.cameras.main.setBackgroundColor('#ffffff')
@@ -21,9 +22,17 @@ class GameScene extends Phaser.Scene {
 // Prints to the console whatever scene were on (for debuging purposes)
   preload () {
     console.log('Game Scene')
+    // these are the images
+    this.load.image('jungleBackground', 'assets/rainforest-image.jpg')
+    this.load.image('monkey', 'assets/monkey.png')
+    
+    
   }
 
   create (data) {
+    this.background = this.add.image(0, 0, 'jungleBackground').setScale(3.00)
+    this.background.setOrigin(0, 0)
+    this.monkey = this.physics.add.sprite(1920 / 2, 1080 - 100, 'monkey').setScale(0.50)
   }
 
   update (time, delta) {
