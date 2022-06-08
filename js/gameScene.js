@@ -15,6 +15,7 @@ class GameScene extends Phaser.Scene {
 
     this.background = null
     this.monkey = null
+    this.fireMissile = false
   }
 // Initializes our title scene class and sets the backround color
   init (data) { this.cameras.main.setBackgroundColor('#ffffff')
@@ -25,6 +26,7 @@ class GameScene extends Phaser.Scene {
     // these are the images
     this.load.image('jungleBackground', 'assets/rainforest-image.jpg')
     this.load.image('monkey', 'assets/monkey.png')
+    this.load.image('banana', 'assets/Single_Banana.gif')
     
     
   }
@@ -33,11 +35,15 @@ class GameScene extends Phaser.Scene {
     this.background = this.add.image(0, 0, 'jungleBackground').setScale(3.00)
     this.background.setOrigin(0, 0)
     this.monkey = this.physics.add.sprite(1920 / 2, 1080 - 100, 'monkey').setScale(0.25)
+    
+// create a group for the missiles
+    this.bananaGroup = this.physics.add.group()
   }
 
   update (time, delta) {
     const keyLeftObj = this.input.keyboard.addKey('LEFT')
     const keyRightObj = this.input.keyboard.addKey('RIGHT')
+    const keySpaceObj = this.input.keyboard.addKey('SPACE')
     
     if (keyLeftObj.isDown === true) {
       this.monkey.x -= 15
@@ -50,6 +56,16 @@ class GameScene extends Phaser.Scene {
       if (this.monkey.x > 1920) {
         this.monkey.x = 0
       }
+    }
+    if (keySpaceObj.isDown === true) {
+      if (this.fireMissile === false) {
+        this.fireMissile = true
+        const aNewBanana = this.physics.add.sprite(this.monkey.x, this.monkey.y, 'banana').setScale(0.25)
+        this.bananaGroup.add(aNewBanana)
+      }
+    }
+    if (keySpaceObj.isUp === true) {
+      this.fireMissile = false
     }
   }
 }
