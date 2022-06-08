@@ -22,7 +22,7 @@ const menuScene = new MenuScene()
 const gameScene = new GameScene()
 
 
-// configures our gam scene
+// configures our game scene
 const config = {
   type: Phaser.AUTO,
   width: 1920,
