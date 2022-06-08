@@ -31,7 +31,7 @@ class SplashScene extends Phaser.Scene {
   }
 // use an if statment to detemine the length of the splash scene 
   update (time, delta) {
-    if (time > 3000) {
+    if (time > 4000) {
      this.scene.switch('titleScene')
     }
   }
