@@ -27,7 +27,8 @@ class GameScene extends Phaser.Scene {
     this.load.image('jungleBackground', 'assets/rainforest-image.jpg')
     this.load.image('monkey', 'assets/monkey.png')
     this.load.image('banana', 'assets/Single_Banana.gif')
-    
+    // the sound files
+    this.load.audio('splat', 'assets/Splat_Sound_Effect.wav')
     
   }
 
@@ -66,12 +67,20 @@ class GameScene extends Phaser.Scene {
         this.fireMissile = true
         const aNewBanana = this.physics.add.sprite(this.monkey.x, this.monkey.y, 'banana').setScale(0.25)
         this.bananaGroup.add(aNewBanana)
+        this.sound.play('splat')
       }
     }
     // if statement that ensures the user can only shoot a banana when the space bar is pressed then released 
     if (keySpaceObj.isUp === true) {
       this.fireMissile = false
     }
+    // this creates a group function for the banana group
+    this.bananaGroup.children.each(function (item) {
+      item.y = item.y - 15
+      if (item.y < 50) {
+        item.destroy()
+      }
+    })
   }
 }
   
