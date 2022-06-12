@@ -10,6 +10,21 @@
 
 // extends our title scene using Phaser (code that someone else has already written)
 class GameScene extends Phaser.Scene {
+  createBalloon () {
+    // this will get a number between 1 and 1920;
+    const balloonXLocation = Math.floor(Math.random() * 1920) + 1 
+    // this will get a number between 1 and 50;
+    let balloonXVelocity = Math.floor(Math.random() * 50) + 1 
+    //this will add minus sign in 50% of cases
+    balloonXVelocity *= Math.round(Math.random()) ? 1 : -1
+    // variable for the balloon
+    const aBalloon = this.physics.add.sprite(balloonXLocation, -100, 'balloon').setScale(0.5)
+    // setting the balloons velocity 
+    aBalloon.body.velocity.y = 200
+    aBalloon.body.velocity.x = balloonXVelocity
+    this.balloonGroup.add(aBalloon)
+  }
+  
   constructor () {
     super({ key: 'gameScene' })
 
@@ -26,10 +41,11 @@ class GameScene extends Phaser.Scene {
     // these are the images
     this.load.image('jungleBackground', 'assets/rainforest-image.jpg')
     this.load.image('monkey', 'assets/monkey.png')
-    this.load.image('banana', 'assets/Single_Banana.gif')
+    this.load.image('banana', 'assets/dart3.png')
+    this.load.image('balloon', 'assets/Ceramic_Bloon_Big.webp')
     // the sound files
-    this.load.audio('splat', 'assets/Splat_Sound_Effect.wav')
-    
+    this.load.audio('splat', 'assets/throwing-whip-effect.wav')
+    this.load.audio('pop', 'assets/balloon-pop.wav')
   }
 
   create (data) {
@@ -40,7 +56,17 @@ class GameScene extends Phaser.Scene {
     
 // creates a group for the bananas
     this.bananaGroup = this.physics.add.group()
-  }
+// creates a group for the balloons
+    this.balloonGroup = this.add.group()  
+    this.createBalloon()
+
+    this.physics.add.collider(this.bananaGroup, this.balloonGroup, function (bananaCollide, balloonCollide) {
+      balloonCollide.destroy()
+      bananaCollide.destroy()
+      this.sound.play('pop')  
+      this.createBalloon()
+      this.createBalloon()
+  }.bind(this))
 
   update (time, delta) {
     // declaring variables to control the monkey connected to keys on our keyboard(left,rigt,space)
