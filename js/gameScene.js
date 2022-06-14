@@ -145,6 +145,14 @@ class GameScene extends Phaser.Scene {
         item.destroy()
       }
     })
+    // 
+    this.balloonGroup.children.each(function (item1) {
+      if ((item1.y > 1080) || (item1.x < 0 || item1.x > 1920)) {
+        item1.y = -20
+        const balloonXCoordinate = Math.floor(Math.random() * 1920) + 1 
+        item1.x = balloonXCoordinate
+      }
+  })
   }  
 }
 export default GameScene
