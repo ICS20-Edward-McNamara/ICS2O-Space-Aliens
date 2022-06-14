@@ -33,8 +33,14 @@ class GameScene extends Phaser.Scene {
     this.fireMissile = false
     this.score = 0
     this.scoreText = null
-    // these lines add style to the game over and win text 
+    this.wins = 0
+    this.winsText = null
+    this.loss = 0
+    this.lossText = null
+    // these lines add style to the text in gameScene
     this.scoreTextStyle = { font: '65px Georgia', fill: '#ffffff', align: 'center' }
+    this.winsTextStyle = { font: '65px Georgia', fill: '#ffffff', align: 'center' }
+    this.lossTextStyle = { font: '65px Georgia', fill: '#ffffff', align: 'center' }
     this.gameOverText = null
     this.gameOverTextStyle = { font: '65px Georgia', fill: '#ff0000', align: 'center' }
     this.gameWinText = null
@@ -61,7 +67,13 @@ class GameScene extends Phaser.Scene {
     // Determines the size and placment of the background image 
     this.background = this.add.image(0, 0, 'jungleBackground')
     this.background.setOrigin(0, 0)
+    // displays score text
     this.scoreText = this.add.text(10, 10, 'Score: ' + this.score.toString(), this.scoreTextStyle)
+    // displays wins text
+    this.winsText = this.add.text(300, 10, 'Wins: ' + this.wins.toString(), this.winsTextStyle)
+    // displays losses text
+    this.lossText = this.add.text(570, 10, 'Losses: ' + this.loss.toString(), this.lossTextStyle)
+    
     this.monkey = this.physics.add.sprite(1920 / 2, 1080 - 100, 'monkey').setScale(0.25)
     
 // creates a group for the bananas
@@ -86,11 +98,14 @@ class GameScene extends Phaser.Scene {
     if (this.score >= 50.0) {
       // pauses the physics to stop new enemies from spawning
       this.physics.pause()
+      // increments the wins by 1
+      this.wins = this.wins + 1
+      this.winsText.setText('Wins: ' + this.wins.toString())
       //  determines the size and placement of the win text
       this.gameWinText = this.add.text(1920 / 2, 1080 / 2, 'You won!\nClick to play again.', this.gameWinTextStyle).setOrigin(0.5)
       // makes text interactive and it takes you back to gameScene
       this.gameWinText.setInteractive({ useHandCursor: true })
-      this.gameWinText.on('pointerdown', () => this.scene.start('gameScene', this.score = 0, ))
+      this.gameWinText.on('pointerdown', () => this.scene.start('gameScene', this.score = 0, this.wins = this.wins))
     }
       }.bind(this))
     // Collisions between ship and aliens
@@ -107,6 +122,9 @@ class GameScene extends Phaser.Scene {
       this.gameOverText.setInteractive({ useHandCursor: true })
       // makes text interactive so it takes you back to gameScene
       this.gameOverText.on('pointerdown', () => this.scene.start('gameScene'))
+      // increments the losses by 1
+      this.loss = this.loss + 1
+      this.lossText.setText('Losses: ' + this.loss.toString())
       // resets score to zero 
       this.score = 0
     }.bind(this))
