@@ -1,11 +1,10 @@
 /* global phaser */
 
 // Copyright (c) 2020 Mr Coxall All rights reserved
-// Modified 2022 Rory Mackay
 //
-// Created by: Rory Mackay
+// Created by: Edward Mcnamara
 // Date: June 2022
-// This is an instruction scene
+// This is the instruction scene
 
 class InstructionScene extends Phaser.Scene {
   constructor () {
