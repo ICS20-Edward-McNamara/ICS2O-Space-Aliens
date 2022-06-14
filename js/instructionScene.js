@@ -1,10 +1,12 @@
-/* global phaser */
+/* global Phaser */
 
-// Copyright (c) 2020 Mr Coxall All rights reserved
+// Copyright (c) 2020 Mr. Coxall All rights reserved
 //
-// Created by: Edward Mcnamara
-// Date: June 2022
-// This is the instruction scene
+// Created by: Mr. Coxall
+// Modified by: Edward McNamara
+// Created on: Sep 2020
+// Modified on: Jun 2022
+// This is the Instruction Scene
 
 class InstructionScene extends Phaser.Scene {
   constructor () {
