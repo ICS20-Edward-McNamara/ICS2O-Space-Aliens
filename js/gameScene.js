@@ -162,7 +162,7 @@ class GameScene extends Phaser.Scene {
     if (keySpaceObj.isUp === true) {
       this.fireMissile = false
     }
-    // this creates a group function for the banana group
+    // This creates a group function for the banana group
     this.bananaGroup.children.each(function (item) {
       item.y = item.y - 15
       if (item.y < 50) {
