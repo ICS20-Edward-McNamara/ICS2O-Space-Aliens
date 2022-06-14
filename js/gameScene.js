@@ -11,11 +11,11 @@
 // extends our title scene using Phaser (code that someone else has already written)
 class GameScene extends Phaser.Scene {
   createBalloon () {
-    // this will get a number between 1 and 1920;
+    // generates a random number between 1 and 1920 for the balloons X location;
     const balloonXLocation = Math.floor(Math.random() * 1920) + 1 
-    // this will get a number between 1 and 50;
+    // generates a number between 1 and 50 for the balloons velocity
     let balloonXVelocity = Math.floor(Math.random() * 50) + 1 
-    //this will add minus sign in 50% of cases
+    // adds a minus sign in 50% of cases for the velocity of the balloon
     balloonXVelocity *= Math.round(Math.random()) ? 1 : -1
     // variable for the balloon
     const aBalloon = this.physics.add.sprite(balloonXLocation, -100, 'balloon').setScale(0.5)
@@ -69,37 +69,43 @@ class GameScene extends Phaser.Scene {
 // creates a group for the balloons
     this.balloonGroup = this.add.group()  
     this.createBalloon()
-
+// collider that executes functions when a dart and a banana colide
     this.physics.add.collider(this.bananaGroup, this.balloonGroup, function (bananaCollide, balloonCollide) {
+      // destroys bothe the dart and the balloon
       balloonCollide.destroy()
       bananaCollide.destroy()
+      // plays a poppings noise 
       this.sound.play('pop') 
+      // increments the score by 2
       this.score = this.score + 2
       this.scoreText.setText('Score: ' + this.score.toString())
+      // creates 2 balloon to appear at the top of the screen
       this.createBalloon()
       this.createBalloon()
       // if statement that ends the game if 50 points is reached
     if (this.score >= 50.0) {
-      //stops new enemies from spawning
+      // pauses the physics to stop new enemies from spawning
       this.physics.pause()
-      // displays win text
+      //  determines the size and placement of the win text
       this.gameWinText = this.add.text(1920 / 2, 1080 / 2, 'You won!\nClick to play again.', this.gameWinTextStyle).setOrigin(0.5)
-      // makes text clickable and it takes you back to gameScene
+      // makes text interactive and it takes you back to gameScene
       this.gameWinText.setInteractive({ useHandCursor: true })
       this.gameWinText.on('pointerdown', () => this.scene.start('gameScene', this.score = 0, ))
     }
       }.bind(this))
     // Collisions between ship and aliens
     this.physics.add.collider(this.monkey, this.balloonGroup, function (monkeyCollide, balloonCollide) {
-      // this plays a popping sound 
+      // this plays a splat sound 
       this.sound.play('splat')
+      // pauses the physics to stop new enemies from spawning
       this.physics.pause()
+      // destroys both the monkey and the balloon when they collide
       balloonCollide.destroy()
       monkeyCollide.destroy()
       // adds game over text when the monkey collides with a balloon
       this.gameOverText = this.add.text(1920 / 2, 1080 / 2, 'Game Over!\nClick to play again.', this.gameOverTextStyle).setOrigin(0.5)
       this.gameOverText.setInteractive({ useHandCursor: true })
-      // makes text clickable and it takes you back to gameScene
+      // makes text interactive so it takes you back to gameScene
       this.gameOverText.on('pointerdown', () => this.scene.start('gameScene'))
       // resets score to zero 
       this.score = 0
@@ -111,7 +117,7 @@ class GameScene extends Phaser.Scene {
     const keyLeftObj = this.input.keyboard.addKey('LEFT')
     const keyRightObj = this.input.keyboard.addKey('RIGHT')
     const keySpaceObj = this.input.keyboard.addKey('SPACE')
-    // if statment that checks if the left aroww key is pressed, if so it moves the monkey to the left 15 pixels 
+    // if statment that checks if the left arrow key is pressed, if so it moves the monkey to the left 15 pixels 
     if (keyLeftObj.isDown === true) {
       this.monkey.x -= 15
       if (this.monkey.x < 0) {
@@ -145,8 +151,9 @@ class GameScene extends Phaser.Scene {
         item.destroy()
       }
     })
-    // 
+    // creates a group function for the balloons 
     this.balloonGroup.children.each(function (item1) {
+      // if statement that takes unpopped balloons to the top of the screen if they travel off the screen
       if ((item1.y > 1080) || (item1.x < 0 || item1.x > 1920)) {
         item1.y = -20
         const balloonXCoordinate = Math.floor(Math.random() * 1920) + 1 
