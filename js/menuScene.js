@@ -15,6 +15,7 @@ class MenuScene extends Phaser.Scene {
 // Our backround image and button variables  
     this.menuSceneBackgroundImage = null
     this.startButton = null
+    this.instructionButton = null
   }
 // Initializes our title scene class and sets the background color
   init (data) { 
@@ -25,6 +26,7 @@ class MenuScene extends Phaser.Scene {
     console.log('Menu Scene')
     this.load.image('menuSceneBackground', 'assets/jungle-image.jpg')
     this.load.image('startButton', 'assets/start-button.png')
+    this.load.image('instructionButton', 'assets/instruction_button.webp')
   }
 
   create (data) {
@@ -36,6 +38,10 @@ class MenuScene extends Phaser.Scene {
     this.startButton = this.add.sprite(1920 / 2, (1080 / 2) + 100, 'startButton')
     this.startButton.setInteractive({ useHandCursor: true })
     this.startButton.on('pointerdown', () => this.clickButton())
+    // displays the button in the middle of the screen and allows the user to press the button to move on to the instruction scen
+    this.instructionButton = this.add.sprite(350, (1080 / 7) + 1, 'instructionButton').setScale(0.25)
+    this.instructionButton.setInteractive({ useHandCursor: true })
+    this.instructionButton.on('pointerdown', () => this.clickButtonA())
   }
 
   update (time, delta) {
@@ -43,6 +49,10 @@ class MenuScene extends Phaser.Scene {
 // function that takes the user to gameScene when the button is pressed
   clickButton () {
     this.scene.start('gameScene')
+// function that takes the user to instructionScene when the button is pressed
+  }
+  clickButtonA () {
+    this.scene.start('instructionScene')
   }
 }
 export default MenuScene 

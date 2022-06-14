@@ -13,6 +13,7 @@ import SplashScene from './splashScene.js'
 import TitleScene from './titleScene.js'
 import MenuScene from './menuScene.js'
 import GameScene from './gameScene.js'
+import InstructionScene from './instructionScene.js'
 
 
 // "variables" for all our game scenes
@@ -20,6 +21,7 @@ const splashScene = new SplashScene()
 const titleScene = new TitleScene()
 const menuScene = new MenuScene()
 const gameScene = new GameScene()
+const instructionScene = new InstructionScene()
 
 
 // configures our game scene
@@ -50,6 +52,8 @@ game.scene.add('splashScene', splashScene)
 game.scene.add('titleScene', titleScene)
 game.scene.add('menuScene', menuScene)
 game.scene.add('gameScene', gameScene)
+game.scene.add('instructionScene', instructionScene)
+
 
 // this line makes the start title our splash scene 
 game.scene.start('splashScene')

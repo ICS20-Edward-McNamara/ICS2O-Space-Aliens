@@ -27,15 +27,18 @@ class GameScene extends Phaser.Scene {
   
   constructor () {
     super({ key: 'gameScene' })
-
+    // variables for our game scene
     this.background = null
     this.monkey = null
     this.fireMissile = false
     this.score = 0
     this.scoreText = null
-    this.scoreTextStyle = { font: '65px Arial', fill: '#ffffff', align: 'center' }
+    // these lines add style to the game over and win text 
+    this.scoreTextStyle = { font: '65px Georgia', fill: '#ffffff', align: 'center' }
     this.gameOverText = null
-    this.gameOverTextStyle = { font: '65px Arial', fill: '#ff0000', align: 'center' }
+    this.gameOverTextStyle = { font: '65px Georgia', fill: '#ff0000', align: 'center' }
+    this.gameWinText = null
+    this.gameWinTextStyle = { font: '65px Georgia', fill: '#00ff00', align: 'center' }
   }
 // Initializes our title scene class and sets the backround color
   init (data) { this.cameras.main.setBackgroundColor('#ffffff')
@@ -44,7 +47,7 @@ class GameScene extends Phaser.Scene {
   preload () {
     console.log('Game Scene')
     // these are the images
-    this.load.image('jungleBackground', 'assets/rainforest-image.jpg')
+    this.load.image('jungleBackground', 'assets/jungle_background.jpg')
     this.load.image('monkey', 'assets/monkey.png')
     this.load.image('banana', 'assets/dart3.png')
     this.load.image('balloon', 'assets/Ceramic_Bloon_Big.webp')
@@ -55,7 +58,7 @@ class GameScene extends Phaser.Scene {
 
   create (data) {
     // Determines the size and placment of the background image 
-    this.background = this.add.image(0, 0, 'jungleBackground').setScale(3.00)
+    this.background = this.add.image(0, 0, 'jungleBackground')
     this.background.setOrigin(0, 0)
     this.scoreText = this.add.text(10, 10, 'Score: ' + this.score.toString(), this.scoreTextStyle)
     this.monkey = this.physics.add.sprite(1920 / 2, 1080 - 100, 'monkey').setScale(0.25)
@@ -70,21 +73,34 @@ class GameScene extends Phaser.Scene {
       balloonCollide.destroy()
       bananaCollide.destroy()
       this.sound.play('pop') 
-      this.score = this.score + 1
+      this.score = this.score + 2
       this.scoreText.setText('Score: ' + this.score.toString())
       this.createBalloon()
       this.createBalloon()
-  }.bind(this))
-    
+      // if statement that ends the game if 50 points is reached
+    if (this.score >= 50.0) {
+      //stops new enemies from spawning
+      this.physics.pause()
+      // displays win text
+      this.gameWinText = this.add.text(1920 / 2, 1080 / 2, 'You won!\nClick to play again.', this.gameWinTextStyle).setOrigin(0.5)
+      // makes text clickable and it takes you back to gameScene
+      this.gameWinText.setInteractive({ useHandCursor: true })
+      this.gameWinText.on('pointerdown', () => this.scene.start('gameScene', this.score = 0, ))
+    }
+      }.bind(this))
     // Collisions between ship and aliens
     this.physics.add.collider(this.monkey, this.balloonGroup, function (monkeyCollide, balloonCollide) {
+      // this plays a popping sound 
       this.sound.play('pop')
       this.physics.pause()
       balloonCollide.destroy()
       monkeyCollide.destroy()
+      // adds game over text when the monkey collides with a balloon
       this.gameOverText = this.add.text(1920 / 2, 1080 / 2, 'Game Over!\nClick to play again.', this.gameOverTextStyle).setOrigin(0.5)
       this.gameOverText.setInteractive({ useHandCursor: true })
+      // makes text clickable and it takes you back to gameScene
       this.gameOverText.on('pointerdown', () => this.scene.start('gameScene'))
+      // resets score to zero 
       this.score = 0
     }.bind(this))
 }
