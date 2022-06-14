@@ -28,9 +28,9 @@ class InstructionScene extends Phaser.Scene {
   preload () {
     console.log('Instruction Scene')
     // this loads the background image
-    this.load.image('instructionSceneBackground', './assets/jungle-background.webp')
+    this.load.image('instructionSceneBackground', './images/jungle-background.webp')
     // this loads the back button image
-    this.load.image('backButton', './assets/back_button.jpg')
+    this.load.image('backButton', './images/back_button.jpg')
   }
   
   create (data) {

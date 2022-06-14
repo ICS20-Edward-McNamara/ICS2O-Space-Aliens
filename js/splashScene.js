@@ -21,7 +21,7 @@ class SplashScene extends Phaser.Scene {
 // Prints to the console whatever scene were on (for debuging purposes)
   preload () {
     console.log('Splash Scene')
-     this.load.image('splashSceneBackground', './assets/Immaculate.jpg')
+     this.load.image('splashSceneBackground', './images/Immaculate.jpg')
   }
 // places the splash scene in the middle of the screen
   create (data) {

@@ -47,13 +47,14 @@ class GameScene extends Phaser.Scene {
   preload () {
     console.log('Game Scene')
     // these are the images
-    this.load.image('jungleBackground', 'assets/jungle_background.jpg')
-    this.load.image('monkey', 'assets/monkey.png')
-    this.load.image('banana', 'assets/dart3.png')
-    this.load.image('balloon', 'assets/Ceramic_Bloon_Big.webp')
+    this.load.image('jungleBackground', 'images/jungle_background.jpg')
+    this.load.image('monkey', 'images/monkey.png')
+    this.load.image('banana', 'images/dart3.png')
+    this.load.image('balloon', 'images/Ceramic_Bloon_Big.webp')
     // the sound files
-    this.load.audio('throw', 'assets/throwing-whip-effect.wav')
-    this.load.audio('pop', 'assets/balloon-pop.wav')
+    this.load.audio('throw', 'sounds/throwing-whip-effect.wav')
+    this.load.audio('pop', 'sounds/balloon-pop.wav')
+    this.load.audio('splat', 'sounds/Splat_Sound_Effect.wav')
   }
 
   create (data) {
@@ -91,7 +92,7 @@ class GameScene extends Phaser.Scene {
     // Collisions between ship and aliens
     this.physics.add.collider(this.monkey, this.balloonGroup, function (monkeyCollide, balloonCollide) {
       // this plays a popping sound 
-      this.sound.play('pop')
+      this.sound.play('splat')
       this.physics.pause()
       balloonCollide.destroy()
       monkeyCollide.destroy()

@@ -25,7 +25,7 @@ class TitleScene extends Phaser.Scene {
   preload () {
     console.log('Title Scene')
 // Loads our background image and gives it an ID (titleSceneBackground)   
-    this.load.image('titleSceneBackground', './assets/cartoon-jungle-background.webp')
+    this.load.image('titleSceneBackground', './images/cartoon-jungle-background.webp')
   }
 
   create (data) {
@@ -34,7 +34,7 @@ class TitleScene extends Phaser.Scene {
     this.titleSceneBackgroundImage.x = 1920 / 2
     this.titleSceneBackgroundImage.y = 1080 / 2
     // determines the size and position of our title scene text
-    this.titleSceneText = this.add.text(1920 / 2, (1080 / 2) + 350, 'Protect Your Bananas', this.titleSceneTextStyle).setOrigin(0.5)
+    this.titleSceneText = this.add.text(1920 / 2, (1080 / 2) + 350, 'Protect Your Kingdom', this.titleSceneTextStyle).setOrigin(0.5)
   }
 
   update (time, delta) {
