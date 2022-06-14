@@ -39,7 +39,7 @@ class InstructionScene extends Phaser.Scene {
     this.instructionSceneBackgroundImage.x = 1920 / 2
     this.instructionSceneBackgroundImage.y = 1080 / 2
    // Determines the size and placement of the body text
-    this.instructionSceneBodyText = this.add.text(1920 / 2, 1080 / 2 + 60, 'Welcome to Protect Your Kingdom!\nUh Oh! Someone has sent a swarm of balloons to take \nover your kingdom with their sheer numbers! \nIts your job to throw darts to pop incoming balloons!\nTry to pop 50 balloons, and you should have scared them off!\n Controls: Arrow keys to move and spacebar to shoot',
+    this.instructionSceneBodyText = this.add.text(1920 / 2, 1080 / 2 , 'Welcome to Protect Your Kingdom!\nUh Oh! Someone has sent a swarm of balloons to take \nover your kingdom with their sheer numbers! \nIts your job to throw darts to pop incoming balloons!\nTry to pop 50 balloons, and you should have scared them off!\n Controls: Arrow keys to move and spacebar to shoot',
     this.instructionSceneBodyTextStyle).setOrigin(0.5)
     // makes a back button
     this.backButton = this.add.sprite(350, (1080 / 6) + 1, 'backButton').setScale(0.15)
