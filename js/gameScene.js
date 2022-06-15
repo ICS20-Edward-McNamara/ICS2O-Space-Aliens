@@ -64,6 +64,10 @@ class GameScene extends Phaser.Scene {
   }
 
   create (data) {
+    // plays the background music
+    var audio = new Audio ('./sounds/background-music.mp3');
+    audio.play();
+    audio.loop = true;
     // Determines the size and placment of the background image 
     this.background = this.add.image(0, 0, 'jungleBackground')
     this.background.setOrigin(0, 0)
