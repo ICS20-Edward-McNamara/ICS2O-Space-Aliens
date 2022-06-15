@@ -177,7 +177,7 @@ class GameScene extends Phaser.Scene {
         const balloonXCoordinate = Math.floor(Math.random() * 1920) + 1 
         item1.x = balloonXCoordinate
       }
-  })
+    })
   }  
 }
 export default GameScene

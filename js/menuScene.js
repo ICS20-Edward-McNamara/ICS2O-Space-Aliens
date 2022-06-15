@@ -24,6 +24,7 @@ class MenuScene extends Phaser.Scene {
 // Prints to the console whatever scene were on (for debugging purposes)
   preload () {
     console.log('Menu Scene')
+    // loads the images
     this.load.image('menuSceneBackground', 'images/jungle-image.jpg')
     this.load.image('startButton', 'images/start-button.png')
     this.load.image('instructionButton', 'images/instruction_button.webp')
@@ -38,7 +39,7 @@ class MenuScene extends Phaser.Scene {
     this.startButton = this.add.sprite(1920 / 2, (1080 / 2) + 100, 'startButton')
     this.startButton.setInteractive({ useHandCursor: true })
     this.startButton.on('pointerdown', () => this.clickButton())
-    // displays the button in the middle of the screen and allows the user to press the button to move on to the instruction scen
+    // displays the button in the middle of the screen and allows the user to press the button to move on to the instruction scene
     this.instructionButton = this.add.sprite(350, (1080 / 7) + 1, 'instructionButton').setScale(0.25)
     this.instructionButton.setInteractive({ useHandCursor: true })
     this.instructionButton.on('pointerdown', () => this.clickButtonA())
@@ -49,8 +50,8 @@ class MenuScene extends Phaser.Scene {
 // function that takes the user to gameScene when the button is pressed
   clickButton () {
     this.scene.start('gameScene')
-// function that takes the user to instructionScene when the button is pressed
-  }
+ }
+  // function that takes the user to instructionScene when the button is pressed
   clickButtonA () {
     this.scene.start('instructionScene')
   }

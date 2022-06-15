@@ -39,7 +39,7 @@ class TitleScene extends Phaser.Scene {
 
   update (time, delta) {
     // if statement that allows the title scene to stay on screen until 6000 ms has elapsed since the start of the program
-    if (time > 12000) {
+    if (time > 7000) {
       this.scene.switch('menuScene')
     }
   }
