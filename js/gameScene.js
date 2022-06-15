@@ -112,6 +112,7 @@ class GameScene extends Phaser.Scene {
       this.gameWinText.on('pointerdown', () => this.scene.start('gameScene', this.score = 0, this.wins = this.wins))
     }
       }.bind(this))
+    
     // Collisions between ship and aliens
     this.physics.add.collider(this.monkey, this.balloonGroup, function (monkeyCollide, balloonCollide) {
       // this plays a splat sound 
